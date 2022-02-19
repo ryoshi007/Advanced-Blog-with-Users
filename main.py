@@ -78,7 +78,7 @@ class Comment(db.Model):
     author = relationship("User", back_populates="comments")
     parent_post = relationship("BlogPost", back_populates="comments")
 
-db.create_all()
+# db.create_all()
 
 
 @app.route('/')
