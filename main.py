@@ -27,7 +27,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=False, force_lower=False, use_ssl=False, base_url=None)
+gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=False, force_lower=False, use_ssl=False,
+                    base_url=None)
 
 
 @login_manager.user_loader
@@ -90,7 +91,8 @@ def register():
             if User.query.filter_by(email=register_form.email.data).first():
                 flash("You've already signed up with that email, log in instead!")
                 return redirect(url_for('login'))
-            hashed_password = generate_password_hash(password=register_form.password.data, method="pbkdf2:sha256", salt_length=8)
+            hashed_password = generate_password_hash(password=register_form.password.data, method="pbkdf2:sha256",
+                                                     salt_length=8)
             new_user = User(email=register_form.email.data, password=hashed_password, name=register_form.name.data)
             db.session.add(new_user)
             db.session.commit()
